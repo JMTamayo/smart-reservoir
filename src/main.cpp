@@ -1,9 +1,19 @@
 #include <Arduino.h>
 
+#include "io/leds/leds.h"
+#include "logging/logger.h"
+
+leds::Led *builtinLed;
+
 void setup() {
-  // put your setup code here, to run once:
+  logging::logger->Initialize();
+
+  logging::logger->Info("System initialized");
+  builtinLed = new leds::Led();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  logging::logger->Info("Builtin LED toggled");
+  builtinLed->Toggle();
+  delay(3000);
 }
