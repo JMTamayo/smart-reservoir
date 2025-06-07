@@ -7,15 +7,15 @@ namespace leds {
 
 const unsigned long Led::getPin() const { return this->pin; }
 
-Led::Led() : pin(config::BUILTIN_LED_PIN) {
+Led::Led(unsigned long pin) : pin(pin) {
   pinMode(this->getPin(), OUTPUT);
   digitalWrite(this->getPin(), LOW);
 }
 
 Led::~Led() {}
 
-void Led::Toggle() {
-  digitalWrite(this->getPin(), !digitalRead(this->getPin()));
-}
+void Led::On() { digitalWrite(this->getPin(), HIGH); }
+
+void Led::Off() { digitalWrite(this->getPin(), LOW); }
 
 } // namespace leds

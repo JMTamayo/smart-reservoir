@@ -5,15 +5,15 @@ namespace sensors {
 
 class HCSR04 {
 private:
-  const unsigned long echoPin;
-  const unsigned long triggerPin;
+  const unsigned int echoPin;
+  const unsigned int triggerPin;
 
-  const unsigned long getEchoPin() const;
+  const unsigned int getEchoPin() const;
 
-  const unsigned long getTriggerPin() const;
+  const unsigned int getTriggerPin() const;
 
 public:
-  HCSR04();
+  HCSR04(unsigned int echoPin, unsigned int triggerPin);
 
   ~HCSR04();
 

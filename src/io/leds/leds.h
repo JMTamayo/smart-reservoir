@@ -10,11 +10,13 @@ private:
   const unsigned long getPin() const;
 
 public:
-  Led();
+  Led(unsigned long pin);
 
   ~Led();
 
-  void Toggle();
+  void On();
+
+  void Off();
 };
 
 } // namespace leds

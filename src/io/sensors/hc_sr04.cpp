@@ -5,13 +5,12 @@
 
 namespace sensors {
 
-const unsigned long HCSR04::getEchoPin() const { return this->echoPin; }
+const unsigned int HCSR04::getEchoPin() const { return this->echoPin; }
 
-const unsigned long HCSR04::getTriggerPin() const { return this->triggerPin; }
+const unsigned int HCSR04::getTriggerPin() const { return this->triggerPin; }
 
-HCSR04::HCSR04()
-    : echoPin(config::HC_SR04_ECHO_PIN),
-      triggerPin(config::HC_SR04_TRIGGER_PIN) {
+HCSR04::HCSR04(unsigned int echoPin, unsigned int triggerPin)
+    : echoPin(echoPin), triggerPin(triggerPin) {
   pinMode(this->getTriggerPin(), OUTPUT);
   pinMode(this->getEchoPin(), INPUT);
   digitalWrite(this->getTriggerPin(), LOW);
