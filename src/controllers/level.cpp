@@ -23,9 +23,11 @@ const int LevelController::getMinPumpDuration() const {
   return this->minPumpDuration;
 }
 
-void LevelController::fatalError() {
+void LevelController::fatalError(const char *message) {
   this->getErrorLed()->On();
   this->getInletValve()->Close();
+
+  logging::logger->Error(message);
 
   while (true) {
   }
@@ -43,33 +45,27 @@ LevelController::LevelController(sensors::HCSR04 *levelSensor,
   this->getInletValve()->Close();
 
   if (this->getTankHeight() <= 0.0) {
-    logging::logger->Error("Tank height must be greater than 0");
-    this->fatalError();
+    this->fatalError("Tank height must be greater than 0");
   }
 
   if (this->getMinLevel() <= 0.0) {
-    logging::logger->Error("Min level must be greater than 0");
-    this->fatalError();
+    this->fatalError("Min level must be greater than 0");
   }
 
   if (this->getMaxLevel() <= 0.0) {
-    logging::logger->Error("Max level must be greater than 0");
-    this->fatalError();
+    this->fatalError("Max level must be greater than 0");
   }
 
   if (this->getMinLevel() >= this->getTankHeight()) {
-    logging::logger->Error("Min level must be less than tank height");
-    this->fatalError();
+    this->fatalError("Min level must be less than tank height");
   }
 
   if (this->getMaxLevel() >= this->getTankHeight()) {
-    logging::logger->Error("Max level must be less than tank height");
-    this->fatalError();
+    this->fatalError("Max level must be less than tank height");
   }
 
   if (this->getMinLevel() >= this->getMaxLevel()) {
-    logging::logger->Error("Min level must be less than max level");
-    this->fatalError();
+    this->fatalError("Min level must be less than max level");
   }
 }
 

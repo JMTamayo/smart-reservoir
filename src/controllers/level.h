@@ -31,7 +31,7 @@ private:
 
   const int getMinPumpDuration() const;
 
-  void fatalError();
+  void fatalError(const char *message);
 
 public:
   LevelController(sensors::HCSR04 *levelSensor,
